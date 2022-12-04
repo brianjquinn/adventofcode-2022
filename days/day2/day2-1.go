@@ -18,7 +18,7 @@ func TotalScoreBasedOnStrategyGuide() {
 		totalScore += score
 	}
 
-	fmt.Printf("Based on the input strategy guide, the score I would receive is: %d\n", totalScore)
+	fmt.Printf("Based on the input strategy guide, the score I would receive is: %d\n\n", totalScore)
 }
 
 func scoreRound(line string) int {

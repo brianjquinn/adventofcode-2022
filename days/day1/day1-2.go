@@ -34,5 +34,5 @@ func Top3MostCaloricElves() {
 		top3Sum += x
 	}
 
-	fmt.Printf("The top 3 most caloric elves are carrying %d total calories\n", top3Sum)
+	fmt.Printf("The top 3 most caloric elves are carrying %d total calories\n\n", top3Sum)
 }
