@@ -3,26 +3,28 @@ package day1
 import (
 	"fmt"
 	"strconv"
+
+	utils "github.com/brianjquinn/adventofcode/days"
 )
 
 func MostCaloricElf() {
 	fmt.Println("Day 1 Part 1: Calorie Counting")
-	items := getItems("days/day1/calories-by-elf.txt")
+	caloriesByElf := utils.ReadFileLinesToStringSlice("days/day1/calories-by-elf.txt")
 
 	var maxCalories int = -1
-	var currCalories int = 0
+	var currCalorieCount int = 0
 
-	for _, item := range items {
-		if item != "" {
-			var convertedCalories, err = strconv.Atoi(item)
+	for _, calorieCount := range caloriesByElf {
+		if calorieCount != "" {
+			var convertedCalories, err = strconv.Atoi(calorieCount)
 			if err == nil {
-				currCalories += convertedCalories
+				currCalorieCount += convertedCalories
 			}
 		} else {
-			if currCalories > maxCalories {
-				maxCalories = currCalories
+			if currCalorieCount > maxCalories {
+				maxCalories = currCalorieCount
 			}
-			currCalories = 0
+			currCalorieCount = 0
 		}
 	}
 

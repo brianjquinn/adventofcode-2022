@@ -1,4 +1,4 @@
-package day1
+package utils
 
 import (
 	"bufio"
@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func getItems(filename string) []string {
+func ReadFileLinesToStringSlice(filename string) []string {
 	f, err := os.Open(filename)
 
 	if err != nil {
@@ -17,15 +17,15 @@ func getItems(filename string) []string {
 
 	scanner := bufio.NewScanner(f)
 
-	var items []string
+	var lines []string
 
 	for scanner.Scan() {
-		items = append(items, scanner.Text())
+		lines = append(lines, scanner.Text())
 	}
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
 
-	return items
+	return lines
 }

@@ -4,17 +4,19 @@ import (
 	"fmt"
 	"sort"
 	"strconv"
+
+	utils "github.com/brianjquinn/adventofcode/days"
 )
 
 func Top3MostCaloricElves() {
-	fmt.Println("Day 1 Part 2: Top 3 Most Caloric Elves")
-	items := getItems("days/day1/calories-by-elf.txt")
+	fmt.Println("Day 1 Part 2: Calorie Counting")
+	caloriesByElf := utils.ReadFileLinesToStringSlice("days/day1/calories-by-elf.txt")
 
 	var caloricTotals []int
 	var currTotal int = 0
-	for _, item := range items {
-		if item != "" {
-			var convertedCalories, err = strconv.Atoi(item)
+	for _, calorieCount := range caloriesByElf {
+		if calorieCount != "" {
+			var convertedCalories, err = strconv.Atoi(calorieCount)
 			if err == nil {
 				currTotal += convertedCalories
 			}
@@ -25,6 +27,7 @@ func Top3MostCaloricElves() {
 	}
 
 	sort.Ints(caloricTotals)
+
 	var top3 []int = caloricTotals[len(caloricTotals)-3:]
 	var top3Sum int = 0
 	for _, x := range top3 {
