@@ -13,5 +13,6 @@ func main() {
 
 	fmt.Println("----------------------")
 
-	day2.TotalScoreBasedOnStrategyGuide()
+	day2.TotalScoreBasedOnStrategyGuidePart1()
+	day2.TotalScoreBasedOnStrategyGuidePart2()
 }

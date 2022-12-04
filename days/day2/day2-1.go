@@ -7,23 +7,22 @@ import (
 	utils "github.com/brianjquinn/adventofcode/days"
 )
 
-func TotalScoreBasedOnStrategyGuide() {
+func TotalScoreBasedOnStrategyGuidePart1() {
 	fmt.Println("Day 2 Part 1: Rock Paper Scissors")
 
 	rpsRounds := utils.ReadFileLinesToStringSlice("days/day2/strategy-guide.txt")
 
 	var totalScore int = 0
 	for _, rpsRound := range rpsRounds {
-		score := scoreRound(rpsRound)
-		totalScore += score
+		totalScore += scoreRoundPart1(rpsRound)
 	}
 
 	fmt.Printf("Based on the input strategy guide, the score I would receive is: %d\n\n", totalScore)
 }
 
-func scoreRound(line string) int {
+func scoreRoundPart1(round string) int {
 	mySelectionToScore := map[string]int{"X": 1, "Y": 2, "Z": 3}
-	selectionSplit := strings.Split(line, " ")
+	selectionSplit := strings.Split(round, " ")
 	opponentSelection := selectionSplit[0]
 	mySelection := selectionSplit[1]
 
