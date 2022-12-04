@@ -8,11 +8,11 @@ import (
 )
 
 func main() {
-	day1.MostCaloricElf()
-	day1.Top3MostCaloricElves()
+	day1.CalorieCountingPart1()
+	day1.CalorieCountingPart2()
 
 	fmt.Println("----------------------")
 
-	day2.TotalScoreBasedOnStrategyGuidePart1()
-	day2.TotalScoreBasedOnStrategyGuidePart2()
+	day2.RockPaperScissorsPart1()
+	day2.RockPaperScissorsPart1()
 }

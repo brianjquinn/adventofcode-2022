@@ -7,7 +7,7 @@ import (
 	utils "github.com/brianjquinn/adventofcode/days"
 )
 
-func MostCaloricElf() {
+func CalorieCountingPart1() {
 	fmt.Println("Day 1 Part 1: Calorie Counting")
 	caloriesByElf := utils.ReadFileLinesToStringSlice("days/day1/calories-by-elf.txt")
 

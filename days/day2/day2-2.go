@@ -7,7 +7,7 @@ import (
 	utils "github.com/brianjquinn/adventofcode/days"
 )
 
-func TotalScoreBasedOnStrategyGuidePart2() {
+func RockPaperScissorsPart2() {
 	fmt.Println("Day 2 Part 1: Rock Paper Scissors")
 
 	rpsRounds := utils.ReadFileLinesToStringSlice("days/day2/strategy-guide.txt")
