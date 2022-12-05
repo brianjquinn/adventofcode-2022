@@ -25,7 +25,7 @@ func RucksackReorganizationPart1() {
 		}
 	}
 
-	fmt.Printf("The sum of the priorities for the common items between all rucksacks in the input is %d\n", sum)
+	fmt.Printf("The sum of the priorities for the common items between compartments in all rucksacks is %d\n", sum)
 }
 
 func findIntersection(s1 []rune, s2 []rune) rune {
