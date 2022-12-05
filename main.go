@@ -20,4 +20,5 @@ func main() {
 	fmt.Println("----------------------")
 
 	day3.RucksackReorganizationPart1()
+	day3.RucksackReorganizationPart2()
 }

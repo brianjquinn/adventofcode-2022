@@ -16,7 +16,7 @@ func RucksackReorganizationPart1() {
 	for _, rucksackContent := range rucksacks {
 		firstCompartmentContents := []rune(rucksackContent[:len(rucksackContent)/2])
 		secondCompartmentContents := []rune(rucksackContent[(len(rucksackContent) / 2):])
-		commonContent := findIntersection(firstCompartmentContents, secondCompartmentContents)
+		commonContent := findFirstIntersection(firstCompartmentContents, secondCompartmentContents)
 
 		if commonContent >= 97 {
 			sum += (int(commonContent) - 96)
@@ -25,10 +25,10 @@ func RucksackReorganizationPart1() {
 		}
 	}
 
-	fmt.Printf("The sum of the priorities for the common items between compartments in all rucksacks is %d\n", sum)
+	fmt.Printf("The sum of the priorities for the common items between compartments in all rucksacks is %d\n\n", sum)
 }
 
-func findIntersection(s1 []rune, s2 []rune) rune {
+func findFirstIntersection(s1 []rune, s2 []rune) rune {
 	s1map := make(map[string]bool)
 
 	for i := 0; i < len(s1); i++ {
