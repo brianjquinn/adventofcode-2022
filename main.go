@@ -5,6 +5,7 @@ import (
 
 	"github.com/brianjquinn/adventofcode/days/day1"
 	"github.com/brianjquinn/adventofcode/days/day2"
+	"github.com/brianjquinn/adventofcode/days/day3"
 )
 
 func main() {
@@ -15,4 +16,8 @@ func main() {
 
 	day2.RockPaperScissorsPart1()
 	day2.RockPaperScissorsPart1()
+
+	fmt.Println("----------------------")
+
+	day3.RucksackReorganizationPart1()
 }
