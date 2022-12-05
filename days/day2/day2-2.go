@@ -8,7 +8,7 @@ import (
 )
 
 func RockPaperScissorsPart2() {
-	fmt.Println("Day 2 Part 1: Rock Paper Scissors")
+	fmt.Println("Day 2 Part 2: Rock Paper Scissors")
 
 	rpsRounds := utils.ReadFileLinesToStringSlice("days/day2/strategy-guide.txt")
 
@@ -29,11 +29,6 @@ func scoreRoundPart2(round string) int {
 
 	return desiredOutcomeToScore[desiredRoundOutcome] + scoreBasedOnWhatMySelectionShouldBe(opponentSelection, desiredRoundOutcome)
 }
-
-/*
-opponent: A = rock, B = paper, C = scissors
-me: X = rock, Y = paper, Z = scissors
-*/
 
 func scoreBasedOnWhatMySelectionShouldBe(oppSelection string, desiredOutcome string) int {
 
