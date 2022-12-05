@@ -31,7 +31,7 @@ func RucksackReorganizationPart2() {
 		}
 	}
 
-	fmt.Printf("The sum of the priorities of the badges for each %d-elf group is %d\n", GroupSize, sum)
+	fmt.Printf("The sum of the priorities of the badges for each %d-elf group is %d\n\n", GroupSize, sum)
 }
 
 func determineBadgeForGroup(groupRucksacks []string) (rune, error) {
