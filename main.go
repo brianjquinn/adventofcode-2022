@@ -9,6 +9,7 @@ import (
 	"github.com/brianjquinn/adventofcode/days/day4"
 	"github.com/brianjquinn/adventofcode/days/day5"
 	"github.com/brianjquinn/adventofcode/days/day6"
+	"github.com/brianjquinn/adventofcode/days/day7"
 )
 
 func main() {
@@ -39,4 +40,9 @@ func main() {
 
 	day6.TuningTroublePart1()
 	day6.TuningTroublePart2()
+
+	fmt.Println("----------------------")
+
+	day7.FooBarPart1()
+	day7.FooBarPart2()
 }
