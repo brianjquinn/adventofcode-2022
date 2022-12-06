@@ -11,7 +11,6 @@ import (
 func CampCleanupPart2() {
 	fmt.Println("Day 4 Part 1: Camp Cleanup")
 
-	// sectionAssignments := utils.ReadFileLinesToStringSlice("days/day4/input.txt")
 	sectionAssignments := utils.ReadFileLinesToStringSlice("days/day4/section-assignments.txt")
 
 	var pairsWithOverlappingRanges int = 0
@@ -32,5 +31,5 @@ func CampCleanupPart2() {
 
 	}
 
-	fmt.Printf("%d assignment pairs have one range that overlaps another\n", pairsWithOverlappingRanges)
+	fmt.Printf("%d assignment pairs have one range that overlaps another\n\n", pairsWithOverlappingRanges)
 }
