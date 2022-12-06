@@ -31,7 +31,7 @@ func buildStacks(initialStackState []string) []Stack[string] {
 	// of all of the stacks
 	for i := len(initialStackState) - 2; i >= 0; i-- {
 		stackStateLine := initialStackState[i]
-		// iterate over every 4th index of the string (each stack takes 3 chars, plus a space in between each stack)
+		// grab every 4th non-empty index of the string (each stack is 3 chars, plus a space in between each stack)
 		for j := 1; j < len(stackStateLine); j += 4 {
 			stackEntry := string(stackStateLine[j])
 			if stackEntry != " " {
@@ -61,15 +61,20 @@ func executeProcedurePart2(stacks *[]Stack[string], procedure []string) {
 	for _, action := range procedure {
 		re := regexp.MustCompile(`(\d+)`)
 		matches := re.FindAll([]byte(action), -1)
+
 		quantity, _ := strconv.Atoi(string(matches[0]))
 		from, _ := strconv.Atoi(string(matches[1]))
 		to, _ := strconv.Atoi(string(matches[2]))
 
 		var staging []string
+
+		// pop crates into a staging array
 		for i := 0; i < quantity; i++ {
 			staging = append(staging, (*stacks)[from-1].Pop())
 		}
 
+		// iterate through the staging array in reverse - pushing each crate into
+		// the destination stack
 		for i := len(staging) - 1; i >= 0; i-- {
 			(*stacks)[to-1].Push(staging[i])
 		}
