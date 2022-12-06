@@ -7,6 +7,7 @@ import (
 	"github.com/brianjquinn/adventofcode/days/day2"
 	"github.com/brianjquinn/adventofcode/days/day3"
 	"github.com/brianjquinn/adventofcode/days/day4"
+	"github.com/brianjquinn/adventofcode/days/day5"
 )
 
 func main() {
@@ -27,4 +28,9 @@ func main() {
 
 	day4.CampCleanupPart1()
 	day4.CampCleanupPart2()
+
+	fmt.Println("----------------------")
+
+	day5.SupplyStacksPart1()
+	day5.SupplyStacksPart2()
 }
