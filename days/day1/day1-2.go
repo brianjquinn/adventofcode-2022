@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strconv"
 
-	utils "github.com/brianjquinn/adventofcode/days"
+	utils "github.com/brianjquinn/adventofcode-2022/days"
 )
 
 func CalorieCountingPart2() {

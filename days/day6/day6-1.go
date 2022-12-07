@@ -3,7 +3,7 @@ package day6
 import (
 	"fmt"
 
-	utils "github.com/brianjquinn/adventofcode/days"
+	utils "github.com/brianjquinn/adventofcode-2022/days"
 )
 
 func TuningTroublePart1() {

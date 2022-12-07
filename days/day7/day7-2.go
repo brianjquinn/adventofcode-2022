@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math"
 
-	utils "github.com/brianjquinn/adventofcode/days"
+	utils "github.com/brianjquinn/adventofcode-2022/days"
 )
 
 const TOTAL_DISK_SPACE int = 70000000
