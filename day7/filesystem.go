@@ -1,9 +1,57 @@
 package day7
 
 import (
+	"math"
 	"strconv"
 	"strings"
 )
+
+type Filesystem struct {
+	root *Directory
+}
+
+func (f Filesystem) totalDiskSpace() int {
+	return 70000000
+}
+
+func (f Filesystem) unusedSpace() int {
+	return f.totalDiskSpace() - f.root.size
+}
+
+func (f *Filesystem) calculateAllDirectorySizes() {
+	f.root.calculateSize()
+}
+
+func (f Filesystem) sumOfSizeOfDirsWithSizeLessThan(size int) int {
+	return sumHelper(size, f.root, 0)
+}
+
+func sumHelper(size int, directory *Directory, sum int) int {
+	if directory.size <= size {
+		sum += directory.size
+	}
+
+	for _, dir := range directory.directories {
+		sum = sumHelper(size, dir, sum)
+	}
+	return sum
+}
+
+func (f Filesystem) sizeOfSmallestDirectoryToDelete(minSize int) int {
+	return sizeHelper(minSize, f.root, math.MaxInt)
+}
+
+func sizeHelper(minSize int, directory *Directory, smallestSize int) int {
+	if directory.size >= minSize && directory.size < smallestSize {
+		smallestSize = directory.size
+	}
+
+	for _, dir := range directory.directories {
+		smallestSize = sizeHelper(minSize, dir, smallestSize)
+	}
+
+	return smallestSize
+}
 
 type Directory struct {
 	directories []*Directory
@@ -13,27 +61,24 @@ type Directory struct {
 	size        int
 }
 
-func (d *Directory) calcSize() int {
-	var sz int = 0
+func (d *Directory) calculateSize() {
 	for _, file := range d.files {
-		sz += file
+		d.size += file
 	}
 
 	for _, directory := range d.directories {
-		sz += directory.calcSize()
+		directory.calculateSize()
+		d.size += directory.size
 	}
-
-	d.size = sz
-	return sz
 }
 
-func buildFileSystem(terminalOutput []string) *Directory {
-	var root *Directory = nil
-	var currDirectory *Directory
-	for _, termLine := range terminalOutput {
+func buildFileSystem(terminalOutput []string) *Filesystem {
+	var filesystem *Filesystem = nil
+	var currDir *Directory
 
+	for _, termLine := range terminalOutput {
+		// command
 		if termLine[0] == '$' {
-			// command
 			lineSplit := strings.Split(termLine, " ")
 			cmd := lineSplit[1]
 			var arg string
@@ -43,23 +88,27 @@ func buildFileSystem(terminalOutput []string) *Directory {
 			}
 
 			if cmd == "cd" {
-				if arg == ".." {
-					// traverse "up" a directory
-					if currDirectory.parent != nil {
-						currDirectory = currDirectory.parent
-					}
-				} else if root == nil {
-					// initialize root and set current directory to root
-					root = &Directory{
+				// initialize the file system since this is the initial "cd /" command
+				if arg == "/" && filesystem == nil {
+					rootDir := &Directory{
 						name:   arg,
 						parent: nil,
 					}
-					currDirectory = root
+
+					filesystem = &Filesystem{
+						root: rootDir,
+					}
+					currDir = rootDir
+				} else if arg == ".." {
+					// traverse "up" a directory
+					if currDir.parent != nil {
+						currDir = currDir.parent
+					}
 				} else {
-					// change to new directory
-					for _, directory := range currDirectory.directories {
+					// change to a new directory specified by arg
+					for _, directory := range currDir.directories {
 						if directory.name == arg {
-							currDirectory = directory
+							currDir = directory
 						}
 					}
 				}
@@ -70,15 +119,15 @@ func buildFileSystem(terminalOutput []string) *Directory {
 			newDirName := lineSplit[1]
 			newDir := &Directory{
 				name:   newDirName,
-				parent: currDirectory,
+				parent: currDir,
 			}
-			currDirectory.directories = append(currDirectory.directories, newDir)
+			currDir.directories = append(currDir.directories, newDir)
 		} else {
 			// file
 			lineSplit := strings.Split(termLine, " ")
 			newFileSize, _ := strconv.Atoi(lineSplit[0])
-			currDirectory.files = append(currDirectory.files, newFileSize)
+			currDir.files = append(currDir.files, newFileSize)
 		}
 	}
-	return root
+	return filesystem
 }
