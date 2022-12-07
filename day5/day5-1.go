@@ -3,13 +3,13 @@ package day5
 import (
 	"fmt"
 
-	utils "github.com/brianjquinn/adventofcode-2022/days"
+	"github.com/brianjquinn/adventofcode-2022/utils"
 )
 
 func SupplyStacksPart1() {
 	fmt.Println("Day 5 Part 1: Supply Stacks")
 
-	stackAndProcedure := utils.ReadFileLinesToStringSlice("days/day5/rearrangement-procedure.txt")
+	stackAndProcedure := utils.ReadFileLinesToStringSlice("day5/rearrangement-procedure.txt")
 
 	var gapIdx = 0
 	for stackAndProcedure[gapIdx] != "" {

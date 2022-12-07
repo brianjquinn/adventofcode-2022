@@ -5,13 +5,13 @@ import (
 	"strconv"
 	"strings"
 
-	utils "github.com/brianjquinn/adventofcode-2022/days"
+	"github.com/brianjquinn/adventofcode-2022/utils"
 )
 
 func CampCleanupPart1() {
 	fmt.Println("Day 4 Part 1: Camp Cleanup")
 
-	sectionAssignments := utils.ReadFileLinesToStringSlice("days/day4/section-assignments.txt")
+	sectionAssignments := utils.ReadFileLinesToStringSlice("day4/section-assignments.txt")
 
 	var pairsThatHaveARangeFullyContainingAnother int = 0
 

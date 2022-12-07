@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 
-	"github.com/brianjquinn/adventofcode-2022/days/day1"
-	"github.com/brianjquinn/adventofcode-2022/days/day2"
-	"github.com/brianjquinn/adventofcode-2022/days/day3"
-	"github.com/brianjquinn/adventofcode-2022/days/day4"
-	"github.com/brianjquinn/adventofcode-2022/days/day5"
-	"github.com/brianjquinn/adventofcode-2022/days/day6"
-	"github.com/brianjquinn/adventofcode-2022/days/day7"
+	"github.com/brianjquinn/adventofcode-2022/day1"
+	"github.com/brianjquinn/adventofcode-2022/day2"
+	"github.com/brianjquinn/adventofcode-2022/day3"
+	"github.com/brianjquinn/adventofcode-2022/day4"
+	"github.com/brianjquinn/adventofcode-2022/day5"
+	"github.com/brianjquinn/adventofcode-2022/day6"
+	"github.com/brianjquinn/adventofcode-2022/day7"
 )
 
 func main() {

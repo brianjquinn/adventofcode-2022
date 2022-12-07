@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"strings"
 
-	utils "github.com/brianjquinn/adventofcode-2022/days"
+	"github.com/brianjquinn/adventofcode-2022/utils"
 )
 
 func RockPaperScissorsPart1() {
 	fmt.Println("Day 2 Part 1: Rock Paper Scissors")
 
-	rpsRounds := utils.ReadFileLinesToStringSlice("days/day2/strategy-guide.txt")
+	rpsRounds := utils.ReadFileLinesToStringSlice("day2/strategy-guide.txt")
 
 	var totalScore int = 0
 	for _, rpsRound := range rpsRounds {

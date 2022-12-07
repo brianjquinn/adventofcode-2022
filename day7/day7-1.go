@@ -3,13 +3,13 @@ package day7
 import (
 	"fmt"
 
-	utils "github.com/brianjquinn/adventofcode-2022/days"
+	"github.com/brianjquinn/adventofcode-2022/utils"
 )
 
 func NoSpaceLeftOnDevicePart1() {
 	fmt.Println("Day 7 Part 1: No Space Left On Device")
 
-	terminalOutput := utils.ReadFileLinesToStringSlice("days/day7/terminal-output.txt")
+	terminalOutput := utils.ReadFileLinesToStringSlice("day7/terminal-output.txt")
 
 	var root *Directory = buildFileSystem(terminalOutput)
 	root.calcSize()

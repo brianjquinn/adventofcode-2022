@@ -6,7 +6,7 @@ import (
 	"log"
 	"strings"
 
-	utils "github.com/brianjquinn/adventofcode-2022/days"
+	"github.com/brianjquinn/adventofcode-2022/utils"
 )
 
 const GroupSize int = 3
@@ -14,7 +14,7 @@ const GroupSize int = 3
 func RucksackReorganizationPart2() {
 	fmt.Println("Day 3 Part 2: Rucksack Reorganization")
 
-	rucksacks := utils.ReadFileLinesToStringSlice("days/day3/rucksacks.txt")
+	rucksacks := utils.ReadFileLinesToStringSlice("day3/rucksacks.txt")
 	var sum int = 0
 	for i := 0; i < len(rucksacks)-2; i += GroupSize {
 		group := rucksacks[i : i+GroupSize]

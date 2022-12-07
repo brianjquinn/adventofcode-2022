@@ -3,13 +3,13 @@ package day3
 import (
 	"fmt"
 
-	utils "github.com/brianjquinn/adventofcode-2022/days"
+	"github.com/brianjquinn/adventofcode-2022/utils"
 )
 
 func RucksackReorganizationPart1() {
 	fmt.Println("Day 3 Part 1: Rucksack Reorganization")
 
-	rucksacks := utils.ReadFileLinesToStringSlice("days/day3/rucksacks.txt")
+	rucksacks := utils.ReadFileLinesToStringSlice("day3/rucksacks.txt")
 
 	var sum int = 0
 
