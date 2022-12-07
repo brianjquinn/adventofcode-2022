@@ -43,6 +43,6 @@ func main() {
 
 	fmt.Println("----------------------")
 
-	day7.FooBarPart1()
-	day7.FooBarPart2()
+	day7.NoSpaceLeftOnDevicePart1()
+	day7.NoSpaceLeftOnDevicePart2()
 }
