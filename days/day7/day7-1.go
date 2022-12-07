@@ -14,16 +14,16 @@ func NoSpaceLeftOnDevicePart1() {
 	var root *Directory = buildFileSystem(terminalOutput)
 	root.calcSize()
 	var solution *int = new(int)
-	sumDirsWithSizeGreaterThan100k(root, solution)
+	sumDirsWithSizeLessThanOrEqualTo100k(root, solution)
 
-	fmt.Printf("The sum of the sizes of the dirctories whose size is less than or equal to 100,000 is %d\n\n", *solution)
+	fmt.Printf("The sum of the sizes of the directories whose size is less than or equal to 100,000 is %d\n\n", *solution)
 }
 
-func sumDirsWithSizeGreaterThan100k(dir *Directory, sum *int) {
+func sumDirsWithSizeLessThanOrEqualTo100k(dir *Directory, sum *int) {
 	if dir.size <= 100000 {
 		*sum += dir.size
 	}
 	for _, directory := range dir.directories {
-		sumDirsWithSizeGreaterThan100k(directory, sum)
+		sumDirsWithSizeLessThanOrEqualTo100k(directory, sum)
 	}
 }

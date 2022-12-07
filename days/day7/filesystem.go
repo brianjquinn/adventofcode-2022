@@ -64,7 +64,6 @@ func buildFileSystem(terminalOutput []string) *Directory {
 					}
 				}
 			}
-
 		} else if strings.HasPrefix(termLine, "dir") {
 			// directory
 			lineSplit := strings.Split(termLine, " ")
