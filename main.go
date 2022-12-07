@@ -10,6 +10,7 @@ import (
 	"github.com/brianjquinn/adventofcode-2022/day5"
 	"github.com/brianjquinn/adventofcode-2022/day6"
 	"github.com/brianjquinn/adventofcode-2022/day7"
+	"github.com/brianjquinn/adventofcode-2022/day8"
 )
 
 func main() {
@@ -45,4 +46,9 @@ func main() {
 
 	day7.NoSpaceLeftOnDevicePart1()
 	day7.NoSpaceLeftOnDevicePart2()
+
+	fmt.Println("----------------------")
+
+	day8.Part1()
+	day8.Part2()
 }
