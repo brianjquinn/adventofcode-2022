@@ -22,7 +22,7 @@ func (s *Stack[T]) Pop() T {
 	return t
 }
 
-func buildStacks(initialStackState []string) []Stack[string] {
+func buildStacksFromInput(initialStackState []string) []Stack[string] {
 	stackIds := initialStackState[len(initialStackState)-1]
 	numStacks, _ := strconv.Atoi(string(stackIds[len(stackIds)-2]))
 	var stacks []Stack[string] = make([]Stack[string], numStacks)
@@ -43,14 +43,19 @@ func buildStacks(initialStackState []string) []Stack[string] {
 	return stacks
 }
 
+func getActionVals(action string) (int, int, int) {
+	re := regexp.MustCompile(`(\d+)`)
+	matches := re.FindAll([]byte(action), -1)
+	quantity, _ := strconv.Atoi(string(matches[0]))
+	from, _ := strconv.Atoi(string(matches[1]))
+	to, _ := strconv.Atoi(string(matches[2]))
+
+	return quantity, from, to
+}
+
 func executeProcedurePart1(stacks *[]Stack[string], procedure []string) {
 	for _, action := range procedure {
-		re := regexp.MustCompile(`(\d+)`)
-		matches := re.FindAll([]byte(action), -1)
-		quantity, _ := strconv.Atoi(string(matches[0]))
-		from, _ := strconv.Atoi(string(matches[1]))
-		to, _ := strconv.Atoi(string(matches[2]))
-
+		quantity, from, to := getActionVals(action)
 		for i := 0; i < quantity; i++ {
 			(*stacks)[to-1].Push((*stacks)[from-1].Pop())
 		}
@@ -59,12 +64,7 @@ func executeProcedurePart1(stacks *[]Stack[string], procedure []string) {
 
 func executeProcedurePart2(stacks *[]Stack[string], procedure []string) {
 	for _, action := range procedure {
-		re := regexp.MustCompile(`(\d+)`)
-		matches := re.FindAll([]byte(action), -1)
-
-		quantity, _ := strconv.Atoi(string(matches[0]))
-		from, _ := strconv.Atoi(string(matches[1]))
-		to, _ := strconv.Atoi(string(matches[2]))
+		quantity, from, to := getActionVals(action)
 
 		var staging []string
 

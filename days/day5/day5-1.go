@@ -19,7 +19,7 @@ func SupplyStacksPart1() {
 	var initialStackState []string = stackAndProcedure[:gapIdx]
 	var procedure []string = stackAndProcedure[gapIdx+1:]
 
-	var stacks []Stack[string] = buildStacks(initialStackState)
+	var stacks []Stack[string] = buildStacksFromInput(initialStackState)
 	executeProcedurePart1(&stacks, procedure)
 
 	var crates string
