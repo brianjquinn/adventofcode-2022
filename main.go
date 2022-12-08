@@ -49,6 +49,6 @@ func main() {
 
 	fmt.Println("----------------------")
 
-	day8.Part1()
-	day8.Part2()
+	day8.TreetopTreeHousePart1()
+	day8.TreetopTreeHousePart2()
 }
