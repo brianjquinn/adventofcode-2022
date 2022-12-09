@@ -11,6 +11,7 @@ import (
 	"github.com/brianjquinn/adventofcode-2022/day6"
 	"github.com/brianjquinn/adventofcode-2022/day7"
 	"github.com/brianjquinn/adventofcode-2022/day8"
+	"github.com/brianjquinn/adventofcode-2022/day9"
 )
 
 func main() {
@@ -51,4 +52,9 @@ func main() {
 
 	day8.TreetopTreeHousePart1()
 	day8.TreetopTreeHousePart2()
+
+	fmt.Println("----------------------")
+
+	day9.RopeBridgePart1()
+	day9.Part2()
 }
