@@ -1,4 +1,4 @@
---- Day 10: Cathode-Ray Tube ---
+### Day 10: Cathode-Ray Tube
 You avoid the ropes, plunge into the river, and swim to shore.
 
 The Elves yell something about meeting back up with them upriver, but the river is too loud to tell exactly what they're saying. They finish crossing the bridge and disappear from view.
@@ -14,21 +14,24 @@ noop takes one cycle to complete. It has no other effect.
 The CPU uses these instructions in a program (your puzzle input) to, somehow, tell the screen what to draw.
 
 Consider the following small program:
-
+```
 noop
 addx 3
 addx -5
+```
+
 Execution of this program proceeds as follows:
 
-At the start of the first cycle, the noop instruction begins execution. During the first cycle, X is 1. After the first cycle, the noop instruction finishes execution, doing nothing.
-At the start of the second cycle, the addx 3 instruction begins execution. During the second cycle, X is still 1.
+- At the start of the first cycle, the noop instruction begins execution. During the first cycle, X is 1. After the first cycle, the noop instruction finishes execution, doing nothing.
+- At the start of the second cycle, the addx 3 instruction begins execution. During the second cycle, X is still 1.
 During the third cycle, X is still 1. After the third cycle, the addx 3 instruction finishes execution, setting X to 4.
-At the start of the fourth cycle, the addx -5 instruction begins execution. During the fourth cycle, X is still 4.
-During the fifth cycle, X is still 4. After the fifth cycle, the addx -5 instruction finishes execution, setting X to -1.
+- At the start of the fourth cycle, the addx -5 instruction begins execution. During the fourth cycle, X is still 4.
+- During the fifth cycle, X is still 4. After the fifth cycle, the addx -5 instruction finishes execution, setting X to -1.
+
 Maybe you can learn something by looking at the value of the X register throughout execution. For now, consider the signal strength (the cycle number multiplied by the value of the X register) during the 20th cycle and every 40 cycles after that (that is, during the 20th, 60th, 100th, 140th, 180th, and 220th cycles).
 
 For example, consider this larger program:
-
+```
 addx 15
 addx -11
 addx 6
@@ -175,6 +178,8 @@ addx -11
 noop
 noop
 noop
+```
+
 The interesting signal strengths can be determined as follows:
 
 During the 20th cycle, register X has the value 21, so the signal strength is 20 * 21 = 420. (The 20th cycle occurs in the middle of the second addx -1, so the value of register X is the starting value, 1, plus all of the other addx values up to that point: 1 + 15 - 11 + 6 - 3 + 5 - 1 - 8 + 13 + 4 = 21.)
