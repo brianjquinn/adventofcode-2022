@@ -1,4 +1,4 @@
-package day1
+package day01
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 
 func CalorieCountingPart2() {
 	fmt.Println("Day 1 Part 2: Calorie Counting")
-	caloriesByElf := utils.ReadFileLinesToStringSlice("day1/calories-by-elf.txt")
+	caloriesByElf := utils.ReadFileLinesToStringSlice("day01/calories-by-elf.txt")
 
 	var caloricTotals []int
 	var currTotal int = 0

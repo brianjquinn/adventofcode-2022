@@ -1,4 +1,4 @@
-package day9
+package day09
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ import (
 func RopeBridgePart1() {
 	fmt.Println("Day 9 Part 1: Rope Bridge")
 
-	headMoves := utils.ReadFileLinesToStringSlice("day9/series-of-motions.txt")
+	headMoves := utils.ReadFileLinesToStringSlice("day09/series-of-motions.txt")
 
 	headCurrRow := 0
 	headCurrCol := 0

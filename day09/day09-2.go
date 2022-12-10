@@ -1,4 +1,4 @@
-package day9
+package day09
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ import (
 func RopeBridgePart2() {
 	fmt.Println("Day 9 Part 2: Rope Bridge")
 
-	headMoves := utils.ReadFileLinesToStringSlice("day9/series-of-motions.txt")
+	headMoves := utils.ReadFileLinesToStringSlice("day09/series-of-motions.txt")
 
 	directionMap := map[string]int{"R": 1, "L": -1, "U": -1, "D": 1}
 	trackMap := make(map[string]bool)

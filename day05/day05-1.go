@@ -1,4 +1,4 @@
-package day5
+package day05
 
 import (
 	"fmt"
@@ -6,10 +6,10 @@ import (
 	"github.com/brianjquinn/adventofcode-2022/utils"
 )
 
-func SupplyStacksPart2() {
-	fmt.Println("Day 5 Part 2: Supply Stacks")
+func SupplyStacksPart1() {
+	fmt.Println("Day 5 Part 1: Supply Stacks")
 
-	stackAndProcedure := utils.ReadFileLinesToStringSlice("day5/rearrangement-procedure.txt")
+	stackAndProcedure := utils.ReadFileLinesToStringSlice("day05/rearrangement-procedure.txt")
 
 	var gapIdx = 0
 	for stackAndProcedure[gapIdx] != "" {
@@ -20,7 +20,7 @@ func SupplyStacksPart2() {
 	var procedure []string = stackAndProcedure[gapIdx+1:]
 
 	var stacks []Stack[string] = buildStacksFromInput(initialStackState)
-	executeProcedurePart2(&stacks, procedure)
+	executeProcedurePart1(&stacks, procedure)
 
 	var crates string
 	for _, stack := range stacks {

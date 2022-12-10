@@ -1,4 +1,4 @@
-package day3
+package day03
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 func RucksackReorganizationPart1() {
 	fmt.Println("Day 3 Part 1: Rucksack Reorganization")
 
-	rucksacks := utils.ReadFileLinesToStringSlice("day3/rucksacks.txt")
+	rucksacks := utils.ReadFileLinesToStringSlice("day03/rucksacks.txt")
 
 	var sum int = 0
 

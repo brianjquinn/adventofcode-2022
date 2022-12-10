@@ -1,4 +1,4 @@
-package day8
+package day08
 
 import (
 	"fmt"
@@ -7,10 +7,10 @@ import (
 	"github.com/brianjquinn/adventofcode-2022/utils"
 )
 
-func TreetopTreeHousePart2() {
-	fmt.Println("Day 8 Part 2: Treetop Tree House")
+func TreetopTreeHousePart1() {
+	fmt.Println("Day 8 Part 1: Treetop Tree House")
 
-	treeGridLines := utils.ReadFileLinesToStringSlice("day8/tree-height-map.txt")
+	treeGridLines := utils.ReadFileLinesToStringSlice("day08/tree-height-map.txt")
 
 	treeGrid := make([][]int, 0)
 	for _, gridLine := range treeGridLines {
@@ -22,49 +22,56 @@ func TreetopTreeHousePart2() {
 		treeGrid = append(treeGrid, rowArr)
 	}
 
-	var maxScenicScore = -1
+	// - 4 to remove the corners which get duplicated
+	visibleTrees := len(treeGrid)*2 + len(treeGrid[0])*2 - 4
+
 	for row := 1; row < len(treeGrid)-1; row++ {
 		for col := 1; col < len(treeGrid[row])-1; col++ {
-			var scenicScore int = calcScenicScore(row, col, treeGrid)
-			if scenicScore > maxScenicScore {
-				maxScenicScore = scenicScore
+			if visible(row, col, treeGrid) {
+				visibleTrees++
 			}
 		}
 	}
 
-	fmt.Printf("The maximum scenic score is %d\n\n", maxScenicScore)
+	fmt.Printf("The number of visible trees are %d\n\n", visibleTrees)
 }
 
-func calcScenicScore(row int, col int, treeGrid [][]int) int {
+func visible(row int, col int, treeGrid [][]int) bool {
 	var currTree int = treeGrid[row][col]
 
 	top := row - 1
 	for currTree > treeGrid[top][col] && top > 0 {
 		top--
 	}
-
-	numTreesTop := row - top
+	if top == 0 && currTree > treeGrid[top][col] {
+		return true
+	}
 
 	bottom := row + 1
 	for currTree > treeGrid[bottom][col] && bottom < len(treeGrid)-1 {
 		bottom++
 	}
-
-	numTreesBottom := bottom - row
+	if bottom == len(treeGrid)-1 && currTree > treeGrid[bottom][col] {
+		return true
+	}
 
 	left := col - 1
 	for currTree > treeGrid[row][left] && left > 0 {
 		left--
 	}
 
-	numTreesLeft := col - left
+	if left == 0 && currTree > treeGrid[row][left] {
+		return true
+	}
 
 	right := col + 1
 	for currTree > treeGrid[row][right] && right < len(treeGrid[row])-1 {
 		right++
 	}
 
-	numTreesRight := right - col
+	if right == len(treeGrid[row])-1 && currTree > treeGrid[row][right] {
+		return true
+	}
 
-	return numTreesTop * numTreesBottom * numTreesLeft * numTreesRight
+	return false
 }

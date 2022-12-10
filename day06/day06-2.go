@@ -1,4 +1,4 @@
-package day6
+package day06
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 func TuningTroublePart2() {
 	fmt.Println("Day 6 Part 2: Tuning Trouble")
 
-	datastreamBuffer := utils.ReadFileLinesToStringSlice("day6/datastream-buffer.txt")[0]
+	datastreamBuffer := utils.ReadFileLinesToStringSlice("day06/datastream-buffer.txt")[0]
 
 	charactersProcessed, _ := FindEndIdxOfMarkerWithUniqLength(14, datastreamBuffer)
 

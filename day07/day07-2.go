@@ -1,4 +1,4 @@
-package day7
+package day07
 
 import (
 	"fmt"
@@ -12,7 +12,7 @@ const NEEDED_UNUSED_SPACE int = 30000000
 func NoSpaceLeftOnDevicePart2() {
 	fmt.Println("Day 7 Part 2: No Space Left On Device")
 
-	terminalOutput := utils.ReadFileLinesToStringSlice("day7/terminal-output.txt")
+	terminalOutput := utils.ReadFileLinesToStringSlice("day07/terminal-output.txt")
 
 	var filesystem *Filesystem = buildFileSystem(terminalOutput)
 	filesystem.calculateAllDirectorySizes()

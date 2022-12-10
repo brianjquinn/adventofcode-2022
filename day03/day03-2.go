@@ -1,4 +1,4 @@
-package day3
+package day03
 
 import (
 	"errors"
@@ -14,7 +14,7 @@ const GroupSize int = 3
 func RucksackReorganizationPart2() {
 	fmt.Println("Day 3 Part 2: Rucksack Reorganization")
 
-	rucksacks := utils.ReadFileLinesToStringSlice("day3/rucksacks.txt")
+	rucksacks := utils.ReadFileLinesToStringSlice("day03/rucksacks.txt")
 	var sum int = 0
 	for i := 0; i < len(rucksacks)-2; i += GroupSize {
 		group := rucksacks[i : i+GroupSize]

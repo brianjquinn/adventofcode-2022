@@ -1,4 +1,4 @@
-package day2
+package day02
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 func RockPaperScissorsPart2() {
 	fmt.Println("Day 2 Part 2: Rock Paper Scissors")
 
-	rpsRounds := utils.ReadFileLinesToStringSlice("day2/strategy-guide.txt")
+	rpsRounds := utils.ReadFileLinesToStringSlice("day02/strategy-guide.txt")
 
 	var totalScore int = 0
 	for _, rpsRound := range rpsRounds {

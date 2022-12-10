@@ -1,4 +1,4 @@
-package day4
+package day04
 
 import (
 	"fmt"
@@ -8,12 +8,12 @@ import (
 	"github.com/brianjquinn/adventofcode-2022/utils"
 )
 
-func CampCleanupPart1() {
+func CampCleanupPart2() {
 	fmt.Println("Day 4 Part 1: Camp Cleanup")
 
-	sectionAssignments := utils.ReadFileLinesToStringSlice("day4/section-assignments.txt")
+	sectionAssignments := utils.ReadFileLinesToStringSlice("day04/section-assignments.txt")
 
-	var pairsThatHaveARangeFullyContainingAnother int = 0
+	var pairsWithOverlappingRanges int = 0
 
 	for _, pair := range sectionAssignments {
 		assignments := strings.Split(pair, ",")
@@ -25,11 +25,11 @@ func CampCleanupPart1() {
 		assig2Start, _ := strconv.Atoi(assig2StartEnd[0])
 		assig2End, _ := strconv.Atoi(assig2StartEnd[1])
 
-		if assig1Start <= assig2Start && assig1End >= assig2End || assig2Start <= assig1Start && assig2End >= assig1End {
-			pairsThatHaveARangeFullyContainingAnother++
+		if assig1Start >= assig2Start && assig1Start <= assig2End || assig1Start <= assig2Start && assig1End >= assig2Start {
+			pairsWithOverlappingRanges++
 		}
 
 	}
 
-	fmt.Printf("%d assignment pairs have one range that fully contains another\n\n", pairsThatHaveARangeFullyContainingAnother)
+	fmt.Printf("%d assignment pairs have one range that overlaps another\n\n", pairsWithOverlappingRanges)
 }
