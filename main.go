@@ -13,6 +13,7 @@ import (
 	"github.com/brianjquinn/adventofcode-2022/day08"
 	"github.com/brianjquinn/adventofcode-2022/day09"
 	"github.com/brianjquinn/adventofcode-2022/day10"
+	"github.com/brianjquinn/adventofcode-2022/day11"
 )
 
 func main() {
@@ -63,4 +64,9 @@ func main() {
 
 	day10.CathodeRayTubePart1()
 	day10.CathodeRayTubePart2()
+
+	fmt.Println("----------------------")
+
+	day11.Part1()
+	day11.Part2()
 }
