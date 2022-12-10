@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/brianjquinn/adventofcode-2022/day1"
+	"github.com/brianjquinn/adventofcode-2022/day10"
 	"github.com/brianjquinn/adventofcode-2022/day2"
 	"github.com/brianjquinn/adventofcode-2022/day3"
 	"github.com/brianjquinn/adventofcode-2022/day4"
@@ -56,5 +57,10 @@ func main() {
 	fmt.Println("----------------------")
 
 	day9.RopeBridgePart1()
-	day9.Part2()
+	day9.RopeBridgePart2()
+
+	fmt.Println("----------------------")
+
+	day10.CathodeRayTubePart1()
+	day10.CathodeRayTubePart2()
 }

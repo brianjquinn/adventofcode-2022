@@ -8,7 +8,7 @@ import (
 	"github.com/brianjquinn/adventofcode-2022/utils"
 )
 
-func Part2() {
+func RopeBridgePart2() {
 	fmt.Println("Day 9 Part 2: Rope Bridge")
 
 	headMoves := utils.ReadFileLinesToStringSlice("day9/series-of-motions.txt")
