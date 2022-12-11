@@ -45,4 +45,5 @@ func CathodeRayTubePart2() {
 	for i := 0; i < len(CRT); i++ {
 		fmt.Println(CRT[i])
 	}
+	fmt.Println()
 }
