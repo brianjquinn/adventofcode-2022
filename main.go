@@ -67,6 +67,6 @@ func main() {
 
 	fmt.Println("----------------------")
 
-	day11.Part1()
-	day11.Part2()
+	day11.MonkeyInTheMiddlePart1()
+	day11.MonkeyInTheMiddlePart2()
 }
