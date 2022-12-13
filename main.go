@@ -14,6 +14,7 @@ import (
 	"github.com/brianjquinn/adventofcode-2022/day09"
 	"github.com/brianjquinn/adventofcode-2022/day10"
 	"github.com/brianjquinn/adventofcode-2022/day11"
+	"github.com/brianjquinn/adventofcode-2022/day12"
 )
 
 func main() {
@@ -69,4 +70,9 @@ func main() {
 
 	day11.MonkeyInTheMiddlePart1()
 	day11.MonkeyInTheMiddlePart2()
+
+	fmt.Println("----------------------")
+
+	day12.HillClimbingAlgorithmPart1()
+	day12.HillClimbingAlgorithmPart2()
 }
