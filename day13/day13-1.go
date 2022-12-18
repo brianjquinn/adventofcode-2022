@@ -1,6 +1,7 @@
 package day13
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"strconv"
@@ -14,40 +15,101 @@ type IntOrSliceInt struct {
 	v   *int
 }
 
-type Packet struct {
+type PacketPtr struct {
 	left  *IntOrSliceInt
 	right *IntOrSliceInt
 }
 
+type Packet struct {
+	left  any
+	right any
+}
+
 func DistressSignalPart1() {
 	fmt.Println("Day 13 Part 1: Distress Signal")
-	packetLines := utils.ReadFileLinesToStringSlice("day13/packets-ex.txt")
+	packetLines := utils.ReadFileLinesToStringSlice("day13/packets.txt")
 
-	var packets []Packet = make([]Packet, 0)
+	packets := parsePackets(packetLines)
+	packetsPtr := parsePacketsPtr(packetLines)
+
+	v1Sum, v2Sum, v3Sum := 0, 0, 0
+	for i, packetPtr := range packetsPtr {
+		fmt.Println("-----------------------")
+		validV1 := validatePtrPacketV1(packetPtr.left, packetPtr.right)
+		if validV1 == 1 {
+			fmt.Printf("Ptr V1: index: %d is valid", i+1)
+			v1Sum += (i + 1)
+		}
+
+		validV2 := validatePtrPacketV2(packetPtr.left, packetPtr.right)
+		if validV2 < 0 {
+			fmt.Printf("Ptr V2:index: %d is valid", i+1)
+			v2Sum += (i + 1)
+		}
+	}
+
+	for i, packet := range packets {
+		validV3 := validatePacketV3(packet.left, packet.right)
+		if validV3 <= 0 {
+			fmt.Printf("V3 :index: %d is valid", i+1)
+			v3Sum += (i + 1)
+		}
+	}
+
+	fmt.Printf("The sum of the indices of the pairs who are in the correct order is Ptr V1: %d, Ptr V2: %d, V3: %d \n\n", v1Sum, v2Sum, v3Sum)
+}
+
+func parsePackets(packetLines []string) []Packet {
+	packets := make([]Packet, 0)
 	for i := 0; i < len(packetLines); i++ {
 		packetLine := packetLines[i]
 		if strings.HasPrefix(packetLine, "[") {
-			// construct a packet from this line and the next line
 			nextPacketLine := packetLines[i+1]
-			left, _ := convertPacketStringToPacketHalf(packetLine)
-			right, _ := convertPacketStringToPacketHalf(nextPacketLine)
+			var left, right any
+			json.Unmarshal([]byte(packetLine), &left)
+			json.Unmarshal([]byte(nextPacketLine), &right)
 			packets = append(packets, Packet{left: left, right: right})
 			i++
 		}
 	}
+	return packets
+}
 
-	var sum int = 0
-	for i, packet := range packets {
-		fmt.Println("-----------------------")
-		valid := validatePacket(packet.left, packet.right)
+func validatePacketV3(left any, right any) int {
+	lefts, aok := left.([]any)
+	rights, bok := right.([]any)
 
-		if valid == 1 {
-			fmt.Printf("index: %d is valid", i+1)
-			sum += (i + 1)
-		}
+	switch {
+	case !aok && !bok:
+		return int(left.(float64) - right.(float64))
+	case !aok:
+		lefts = []any{left}
+	case !bok:
+		rights = []any{right}
 	}
 
-	fmt.Printf("The sum of the indices of the pairs who are in the correct order is %d\n\n", sum)
+	for i := 0; i < len(lefts) && i < len(rights); i++ {
+		c := validatePacketV3(lefts[i], rights[i])
+		if c != 0 {
+			return c
+		}
+	}
+	return len(lefts) - len(rights)
+}
+
+func parsePacketsPtr(packetLines []string) []PacketPtr {
+	var packets []PacketPtr = make([]PacketPtr, 0)
+	for i := 0; i < len(packetLines); i++ {
+		packetLine := packetLines[i]
+		if strings.HasPrefix(packetLine, "[") {
+			nextPacketLine := packetLines[i+1]
+			left, _ := convertPacketStringToPacketHalf(packetLine)
+			right, _ := convertPacketStringToPacketHalf(nextPacketLine)
+			packets = append(packets, PacketPtr{left: left, right: right})
+			i++
+		}
+	}
+	return packets
 }
 
 func convertPacketStringToPacketHalf(packetLine string) (*IntOrSliceInt, error) {
@@ -81,7 +143,7 @@ func convertPacketStringToPacketHalf(packetLine string) (*IntOrSliceInt, error) 
 	return nil, errors.New("something went wrong processing input")
 }
 
-func validatePacket(left *IntOrSliceInt, right *IntOrSliceInt) int {
+func validatePtrPacketV1(left *IntOrSliceInt, right *IntOrSliceInt) int {
 	isLeftArray := isArray(left)
 	isRightArray := isArray(right)
 	if !isLeftArray && !isRightArray {
@@ -103,7 +165,7 @@ func validatePacket(left *IntOrSliceInt, right *IntOrSliceInt) int {
 			lefti := (*leftArr)[i]
 			righti := (*rightArr)[i]
 
-			validity := validatePacket(&lefti, &righti)
+			validity := validatePtrPacketV1(&lefti, &righti)
 			if validity != 0 {
 				return validity
 			}
@@ -126,9 +188,53 @@ func validatePacket(left *IntOrSliceInt, right *IntOrSliceInt) int {
 		}
 
 		convertToArr(arrToConvert)
-		return validatePacket(left, right)
+		return validatePtrPacketV1(left, right)
 	}
 	return 0
+}
+
+func validatePtrPacketV2(left *IntOrSliceInt, right *IntOrSliceInt) int {
+	leftArr := left.arr
+	rightArr := right.arr
+	var lowerLen int = 0
+	if len(*leftArr) < len(*rightArr) {
+		lowerLen = len(*leftArr)
+	} else {
+		lowerLen = len(*rightArr)
+	}
+	validity := 0
+	for i := 0; i < lowerLen; i++ {
+		lefti := (*leftArr)[i]
+		leftIsArray := isArray(&lefti)
+		righti := (*rightArr)[i]
+		rightIsArray := isArray(&righti)
+
+		if !leftIsArray && !rightIsArray {
+			validity = *lefti.v - *righti.v
+		} else if !leftIsArray && rightIsArray {
+			convertToArr(&lefti)
+			validity = validatePtrPacketV2(&lefti, &righti)
+		} else if leftIsArray && !rightIsArray {
+			convertToArr(&righti)
+			validity = validatePtrPacketV2(&lefti, &righti)
+		} else if leftIsArray && rightIsArray {
+			validity = validatePtrPacketV2(&lefti, &righti)
+		}
+
+		if validity != 0 {
+			break
+		}
+	}
+
+	if validity == 0 {
+		if len(*leftArr) > len(*rightArr) {
+			validity = 1
+		} else if len(*leftArr) < len(*rightArr) {
+			validity = -1
+		}
+	}
+
+	return validity
 }
 
 func isArray(intOrSlice *IntOrSliceInt) bool {
