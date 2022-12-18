@@ -5,5 +5,5 @@ import (
 )
 
 func DistressSignalPart2() {
-	fmt.Println("Day 13 Part 1: Distress Signal")
+	fmt.Println("Day 13 Part 2: Distress Signal")
 }

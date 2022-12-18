@@ -34,5 +34,5 @@ func HillClimbingAlgorithmPart1() {
 		}
 	}
 
-	fmt.Printf("The shortest path from the start to the location with the best signal is %d", shortestPath)
+	fmt.Printf("The shortest path from the start to the location with the best signal is %d\n\n", shortestPath)
 }

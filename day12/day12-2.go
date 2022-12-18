@@ -33,5 +33,5 @@ func HillClimbingAlgorithmPart2() {
 		}
 	}
 
-	fmt.Printf("The shortest path starting from an square with elevation 'a' is %d\n\n", shortestPathStartingFromAnA)
+	fmt.Printf("The shortest path starting from a square with elevation 'a' is %d\n\n", shortestPathStartingFromAnA)
 }
