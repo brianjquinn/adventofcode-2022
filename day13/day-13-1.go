@@ -32,7 +32,6 @@ func parsePackets(packetLines []string) []any {
 		if strings.HasPrefix(packetLine, "[") {
 			var pkt any
 			json.Unmarshal([]byte(packetLine), &pkt)
-			fmt.Println(pkt)
 			packets = append(packets, pkt)
 		}
 	}
