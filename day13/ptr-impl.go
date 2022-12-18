@@ -1,7 +1,6 @@
 package day13
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"strconv"
@@ -20,19 +19,13 @@ type PacketPtr struct {
 	right *IntOrSliceInt
 }
 
-type Packet struct {
-	left  any
-	right any
-}
-
-func DistressSignalPart1() {
-	fmt.Println("Day 13 Part 1: Distress Signal")
+func DistressSignalPart1Pointer() {
+	fmt.Println("Day 13 Part 1: Distress Signal (Pointer Implementation that worked on example data but not on the actual data)")
 	packetLines := utils.ReadFileLinesToStringSlice("day13/packets.txt")
 
-	packets := parsePackets(packetLines)
 	packetsPtr := parsePacketsPtr(packetLines)
 
-	v1Sum, v2Sum, v3Sum := 0, 0, 0
+	v1Sum, v2Sum := 0, 0
 	for i, packetPtr := range packetsPtr {
 		fmt.Println("-----------------------")
 		validV1 := validatePtrPacketV1(packetPtr.left, packetPtr.right)
@@ -47,54 +40,7 @@ func DistressSignalPart1() {
 			v2Sum += (i + 1)
 		}
 	}
-
-	for i, packet := range packets {
-		validV3 := validatePacketV3(packet.left, packet.right)
-		if validV3 <= 0 {
-			fmt.Printf("V3 :index: %d is valid", i+1)
-			v3Sum += (i + 1)
-		}
-	}
-
-	fmt.Printf("The sum of the indices of the pairs who are in the correct order is Ptr V1: %d, Ptr V2: %d, V3: %d \n\n", v1Sum, v2Sum, v3Sum)
-}
-
-func parsePackets(packetLines []string) []Packet {
-	packets := make([]Packet, 0)
-	for i := 0; i < len(packetLines); i++ {
-		packetLine := packetLines[i]
-		if strings.HasPrefix(packetLine, "[") {
-			nextPacketLine := packetLines[i+1]
-			var left, right any
-			json.Unmarshal([]byte(packetLine), &left)
-			json.Unmarshal([]byte(nextPacketLine), &right)
-			packets = append(packets, Packet{left: left, right: right})
-			i++
-		}
-	}
-	return packets
-}
-
-func validatePacketV3(left any, right any) int {
-	lefts, aok := left.([]any)
-	rights, bok := right.([]any)
-
-	switch {
-	case !aok && !bok:
-		return int(left.(float64) - right.(float64))
-	case !aok:
-		lefts = []any{left}
-	case !bok:
-		rights = []any{right}
-	}
-
-	for i := 0; i < len(lefts) && i < len(rights); i++ {
-		c := validatePacketV3(lefts[i], rights[i])
-		if c != 0 {
-			return c
-		}
-	}
-	return len(lefts) - len(rights)
+	fmt.Printf("The sum of the indices of the pairs who are in the correct order is Ptr V1: %d, Ptr V2: %d \n\n", v1Sum, v2Sum)
 }
 
 func parsePacketsPtr(packetLines []string) []PacketPtr {
