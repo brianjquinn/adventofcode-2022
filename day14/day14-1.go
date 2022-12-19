@@ -32,7 +32,7 @@ func RegolithReservoirPart1() {
 	// draw the starting point
 	sandSimGrid[0][500] = "+"
 
-	rockStructures := utils.ReadFileLinesToStringSlice("day14/cave-scan-ex.txt")
+	rockStructures := utils.ReadFileLinesToStringSlice("day14/cave-scan.txt")
 	// iterate through the rock structures and draw them into the grid
 	maxRow := 0
 	for _, rockStructure := range rockStructures {
@@ -73,20 +73,19 @@ func RegolithReservoirPart1() {
 
 	// start drawing the sand on the simulation area
 	grainsOfSandAtRest := drawSand(&sandSimGrid, maxRow)
-	printSandSimGrid(sandSimGrid)
 	fmt.Printf("The number of grains of sand that have come to rest is %d\n\n", grainsOfSandAtRest)
 }
 
-func printSandSimGrid(ssg [][]string) {
-	for i := 0; i < 12; i++ {
-		gridRow := ssg[i]
-		for j := 475; j <= 525; j++ {
-			fmt.Print(gridRow[j])
-		}
-		fmt.Println()
-	}
-	fmt.Println()
-}
+// func printSandSimGrid(ssg [][]string) {
+// 	for i := 0; i < 12; i++ {
+// 		gridRow := ssg[i]
+// 		for j := 475; j <= 525; j++ {
+// 			fmt.Print(gridRow[j])
+// 		}
+// 		fmt.Println()
+// 	}
+// 	fmt.Println()
+// }
 
 func drawSand(simGrid *[][]string, maxRow int) int {
 	currLocation := []int{0, 500}

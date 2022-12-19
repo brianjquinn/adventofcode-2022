@@ -69,7 +69,7 @@ func RegolithReservoirPart2() {
 
 	// start drawing the sand on the simulation area
 	grainsOfSandAtRest := drawSandPart2(&sandSimGrid)
-	printSandSimGrid(sandSimGrid)
+	// printSandSimGrid(sandSimGrid)
 	fmt.Printf("The number of grains of sand at rest when the source is plugged is %d\n\n", grainsOfSandAtRest)
 }
 
