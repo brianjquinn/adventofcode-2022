@@ -16,6 +16,7 @@ import (
 	"github.com/brianjquinn/adventofcode-2022/day11"
 	"github.com/brianjquinn/adventofcode-2022/day12"
 	"github.com/brianjquinn/adventofcode-2022/day13"
+	"github.com/brianjquinn/adventofcode-2022/day14"
 )
 
 func main() {
@@ -81,4 +82,9 @@ func main() {
 
 	day13.DistressSignalPart1()
 	day13.DistressSignalPart2()
+
+	fmt.Println("----------------------")
+
+	day14.RegolithReservoirPart1()
+	day14.RegolithReservoirPart2()
 }
