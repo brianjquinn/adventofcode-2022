@@ -22,7 +22,6 @@ func CathodeRayTubePart1() {
 	for cycle := 1; cycle <= 220; cycle++ {
 		if cycle == cycleCountsOfInterest[cycleCountIdx] {
 			addToSigSum := cycle * registerX
-			fmt.Println(addToSigSum)
 			signalStrengthSum += addToSigSum
 			cycleCountIdx++
 		}
