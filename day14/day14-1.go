@@ -8,12 +8,6 @@ import (
 	"github.com/brianjquinn/adventofcode-2022/utils"
 )
 
-const (
-	Down              int = 0
-	DiagonalDownLeft  int = 1
-	DiagonalDownRight int = 2
-)
-
 var directionMods [][]int = [][]int{{1, 0}, {1, -1}, {1, 1}}
 
 func RegolithReservoirPart1() {
