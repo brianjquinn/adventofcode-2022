@@ -38,3 +38,11 @@ func MapStringArrToUInt64Arr(strArr []string) []uint64 {
 	}
 	return intArr
 }
+
+// go doesnt have a built in math.Abs for ints?!
+func Abs(x int64) int64 {
+	if x < 0 {
+		return -x
+	}
+	return x
+}

@@ -31,7 +31,7 @@ func RopeBridgePart1() {
 		for i := 0; i < num; i++ {
 			if horizontal {
 				headCurrCol += directionMap[direction]
-				if Abs(int64(headCurrCol)-int64(tailCurrCol)) == 2 {
+				if utils.Abs(int64(headCurrCol)-int64(tailCurrCol)) == 2 {
 					tailCurrCol += directionMap[direction]
 					if headCurrRow != tailCurrRow {
 						tailCurrRow = headCurrRow
@@ -41,7 +41,7 @@ func RopeBridgePart1() {
 
 			} else {
 				headCurrRow += directionMap[direction]
-				if Abs(int64(headCurrRow)-int64(tailCurrRow)) == 2 {
+				if utils.Abs(int64(headCurrRow)-int64(tailCurrRow)) == 2 {
 					tailCurrRow += directionMap[direction]
 					if headCurrCol != tailCurrCol {
 						tailCurrCol = headCurrCol
@@ -53,12 +53,4 @@ func RopeBridgePart1() {
 	}
 
 	fmt.Printf("The tail visited %d positions at least once\n\n", len(trackMap)+1)
-}
-
-// go doesnt have a built in math.Abs for ints?!
-func Abs(x int64) int64 {
-	if x < 0 {
-		return -x
-	}
-	return x
 }
