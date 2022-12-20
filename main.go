@@ -17,6 +17,7 @@ import (
 	"github.com/brianjquinn/adventofcode-2022/day12"
 	"github.com/brianjquinn/adventofcode-2022/day13"
 	"github.com/brianjquinn/adventofcode-2022/day14"
+	"github.com/brianjquinn/adventofcode-2022/day15"
 )
 
 func main() {
@@ -87,4 +88,9 @@ func main() {
 
 	day14.RegolithReservoirPart1()
 	day14.RegolithReservoirPart2()
+
+	fmt.Println("----------------------")
+
+	day15.BeaconExclusionZonePart1()
+	day15.BeaconExclusionZonePart2()
 }
