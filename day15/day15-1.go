@@ -14,7 +14,6 @@ func BeaconExclusionZonePart1() {
 
 	sensorsAndBeacons := utils.ReadFileLinesToStringSlice("day15/sensors-and-beacons.txt")
 	var re = regexp.MustCompile(`(?mi)x=(-*\d+), y=(-*\d+)`)
-	// lets parse all of them so we can get an idea of max x/y
 	sensorPositions := make([][]int, 0)
 	beaconPositions := make([][]int, 0)
 	minX := math.MaxInt
@@ -67,16 +66,17 @@ func BeaconExclusionZonePart1() {
 		manhattanDist := int(utils.Abs(int64(sensor[0])-int64(beacon[0])) + utils.Abs(int64(sensor[1])-int64(beacon[1])))
 		diff := int(utils.Abs(int64(yOfInterest - sensor[1])))
 		width := (manhattanDist-diff)*2 + 1
-		// figure out the starting point as far to the left in the target row as possible and then iterate to simulate movement left to right
-		// along the target row
+		// figure out the starting x index in the target row and iterate
+		// in order to produce the x indexes that would be covered by this
+		// sensor in the target row - store those indexes in a map so we get
+		// a unique count of the indexes in the target row covered by all sensors
 		start := sensor[0] - (width / 2)
 		for i := 0; i < width; i++ {
-			// I should probably put a check here to exclude if there is a beacon
-			// in the row of interest which shouldn't be counted as a position
-			// a beacon cannot be
 			coveredXPositions[start+i] = true
 		}
 	}
+
+	// remove out beacons that are in the target row
 	for _, beacon := range beaconPositions {
 		if coveredXPositions[beacon[0]] && beacon[1] == yOfInterest {
 			delete(coveredXPositions, beacon[0])
